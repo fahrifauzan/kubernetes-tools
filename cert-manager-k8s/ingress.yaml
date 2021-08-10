@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/tls-acme: "ture"
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
+  name: example-app
+spec:
+  tls:
+  - hosts:
+    - dns name . com
+    secretName: example-tls-app
+  rules:
+  - host: dns name . com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: name-service
+            port: 
+              number: 8069
